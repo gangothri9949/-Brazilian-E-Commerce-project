@@ -1,6 +1,7 @@
 1️⃣ Create Database
 CREATE DATABASE olist_db;
 USE olist_db;
+----------------------------------------------------------------------------------------------------------------------
 2️⃣ Create Tables
 
 Example structure for the main tables.
@@ -16,6 +17,7 @@ CREATE TABLE orders (
     order_delivered_customer_date DATETIME,
     order_estimated_delivery_date DATETIME
 );
+------------------------------------------------------------------------------------------------------------------------
 Customers Table
 CREATE TABLE customers (
     customer_id VARCHAR(50) PRIMARY KEY,
@@ -23,6 +25,7 @@ CREATE TABLE customers (
     customer_city VARCHAR(50),
     customer_state VARCHAR(5)
 );
+-----------------------------------------------------------------------------------------------------------------------------
 Order Items Table
 CREATE TABLE order_items (
     order_id VARCHAR(50),
@@ -32,17 +35,20 @@ CREATE TABLE order_items (
     price DECIMAL(10,2),
     freight_value DECIMAL(10,2)
 );
+----------------------------------------------------------------------------------------------------------------------------------
 Products Table
 CREATE TABLE products (
     product_id VARCHAR(50) PRIMARY KEY,
     product_category_name VARCHAR(100)
 );
+-----------------------------------------------------------------------------------------------------------------------------------
 Reviews Table
 CREATE TABLE reviews (
     review_id VARCHAR(50),
     order_id VARCHAR(50),
     review_score INT
 );
+----------------------------------------------------------------------------------------------------------------------------------
 3️⃣ Data Cleaning
 Remove Null Category Names
 UPDATE products
@@ -52,10 +58,12 @@ Check Missing Values
 SELECT *
 FROM orders
 WHERE order_purchase_timestamp IS NULL;
+-----------------------------------------------------------------------------------------------------------------------------------
 4️⃣ Create Revenue Calculation
 SELECT 
     SUM(price + freight_value) AS total_revenue
 FROM order_items;
+-------------------------------------------------------------------------------------------------------------------------------
 5️⃣ Total Orders
 SELECT COUNT(DISTINCT order_id) AS total_orders
 FROM orders;
